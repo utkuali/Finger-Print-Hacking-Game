@@ -1,0 +1,46 @@
+<!--   
+Code by Scott Plunkett aka. plunkettscott.
+Original code: https://github.com/plunkettscott/interact-sound
+His Github: https://github.com/plunkettscott
+Credits and thanks to him.
+-->
+<html>
+    <head>
+        <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.min.js" type="text/javascript"></script>
+        <script>
+            var audioPlayer = null;
+            window.addEventListener('message', function(event) {
+                if (event.data.transactionType == "intro") {
+				
+                  if (audioPlayer != null) {
+                    audioPlayer.pause();
+                  }
+
+                  audioPlayer = new Howl({src: ["./intro.ogg"]});
+                  audioPlayer.volume(0.2);
+                  audioPlayer.play();
+
+                } else if (event.data.transactionType == "success") {
+				
+                  if (audioPlayer != null) {
+                    audioPlayer.pause();
+                  }
+
+                  audioPlayer = new Howl({src: ["./success.ogg"]});
+                  audioPlayer.volume(0.2);
+                  audioPlayer.play();
+                } else if (event.data.transactionType == "fail") {
+				
+                  if (audioPlayer != null) {
+                    audioPlayer.pause();
+                  }
+
+                  audioPlayer = new Howl({src: ["./fail.ogg"]});
+                  audioPlayer.volume(0.2);
+                  audioPlayer.play();
+                }
+            });
+        </script>
+    </head>
+</html>
