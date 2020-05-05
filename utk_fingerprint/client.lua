@@ -678,6 +678,12 @@ function F_13(scaleform)
     F_12("Move Selector")
     PopScaleformMovieFunctionVoid()
 
+	PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
+    PushScaleformMovieFunctionParameterInt(6)
+    F_11(GetControlInstructionalButton(2, 192, true))
+    F_12("Check Selections")
+    PopScaleformMovieFunctionVoid()
+	
     PushScaleformMovieFunction(scaleform, "DRAW_INSTRUCTIONAL_BUTTONS")
     PopScaleformMovieFunctionVoid()
 
