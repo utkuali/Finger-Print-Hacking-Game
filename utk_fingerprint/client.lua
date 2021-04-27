@@ -170,6 +170,8 @@ G_14 = {
     [35] = 0.67,
 }
 G_20 = false
+G_99 = 1
+levels = { 1, 2, 3, 4 }
 
 function Generate()
     Citizen.CreateThread(function()
@@ -199,7 +201,10 @@ AddEventHandler("utk_fingerprint:startGame", function()
 end)
 
 AddEventHandler("StartHack", function()
-    G_0 = 1
+    G_99 = 1
+    local index = math.random(#levels)
+    G_0 = levels[index]
+    table.remove(levels, index)
     G_6 = 0
     Seconds = 0
     Seconds2 = 0
@@ -519,9 +524,13 @@ function F_3()
         Citizen.Wait(3500)
         G_2 = true
         if a == true then
-            if G_0 < LevelCount then
+            if G_99 < LevelCount then
                 F_0()
-                G_0 = G_0 + 1
+                local index = math.random(#levels)
+                G_0 = levels[index]
+                table.remove(levels, index)
+                print(G_0)
+                G_99 = G_99 + 1
             else
                 G_1 = true
                 F_7()
@@ -558,6 +567,7 @@ function F_7()
     StopSound(G_17)
     ReleaseSoundId(G_17)
     G_15 = false
+    levels = { 1, 2, 3, 4 }
 end
 
 function F_8(reason)
@@ -570,6 +580,7 @@ function F_8(reason)
     StopSound(G_17)
     ReleaseSoundId(G_17)
     G_15 = false
+    levels = { 1, 2, 3, 4 }
 end
 
 function F_2()
@@ -683,7 +694,7 @@ function F_13(scaleform)
     F_11(GetControlInstructionalButton(2, 192, true))
     F_12("Check Selections")
     PopScaleformMovieFunctionVoid()
-	
+
     PushScaleformMovieFunction(scaleform, "DRAW_INSTRUCTIONAL_BUTTONS")
     PopScaleformMovieFunctionVoid()
 
